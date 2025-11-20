@@ -1,36 +1,178 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AdiLabs - Personal Landing Page
+
+Professional landing page for Adi Sumardi, a Fullstack Developer specializing in web applications, AI integration, and enterprise solutions.
+
+## Features
+
+- **Modern Design**: Playful yet elegant design with blue & gold color scheme
+- **Fully Responsive**: Optimized for all devices (mobile, tablet, desktop)
+- **Smooth Animations**: Framer Motion animations throughout
+- **SEO Optimized**: Complete SEO setup with metadata, Open Graph, Twitter Cards, JSON-LD structured data
+- **Interactive Sections**:
+  - Hero with animated gradient background
+  - About section with stats
+  - Tech Stack with filterable categories
+  - Projects showcase with 7 featured projects
+  - Services offerings
+  - Contact form
+  - Professional footer
+
+## Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Icons**: React Icons
+- **Font**: Geist Sans & Geist Mono
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18+ installed
+- npm or yarn package manager
+
+### Installation
+
+1. Install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Run the development server:
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Build for Production
 
-## Learn More
+```bash
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+adilabs-landing/
+├── app/
+│   ├── globals.css          # Global styles and color palette
+│   ├── layout.tsx           # Root layout with SEO metadata
+│   ├── page.tsx             # Main page with all sections
+│   ├── sitemap.ts           # Dynamic sitemap generation
+│   └── robots.ts            # Robots.txt configuration
+├── components/
+│   ├── Hero.tsx             # Hero section
+│   ├── About.tsx            # About section
+│   ├── TechStack.tsx        # Tech stack section
+│   ├── Projects.tsx         # Projects showcase
+│   ├── Services.tsx         # Services section
+│   ├── Contact.tsx          # Contact form
+│   ├── Footer.tsx           # Footer section
+│   └── JsonLd.tsx           # JSON-LD structured data
+├── data/
+│   └── projects.ts          # Projects data
+└── public/                  # Static assets
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Customization
 
-## Deploy on Vercel
+### Update Personal Information
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Social Media Links**: Update URLs in:
+   - `components/Hero.tsx`
+   - `components/Contact.tsx`
+   - `components/Footer.tsx`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. **Projects**: Edit `data/projects.ts` to add/modify projects
+
+3. **Tech Stack**: Modify `components/TechStack.tsx` to update technologies
+
+4. **SEO Metadata**: Update `app/layout.tsx` for meta tags and `components/JsonLd.tsx` for structured data
+
+5. **Color Scheme**: Customize colors in `app/globals.css`
+
+### Add Google Analytics
+
+Add your Google verification code in `app/layout.tsx`:
+```typescript
+verification: {
+  google: "your-google-verification-code-here",
+}
+```
+
+## Deployment
+
+### Deploy to Vercel (Recommended)
+
+1. Push code to GitHub
+2. Import repository in Vercel
+3. Configure custom domain (adilabs.id)
+4. Deploy!
+
+### Deploy to Hostinger
+
+1. Build the project:
+```bash
+npm run build
+```
+
+2. Upload the `.next`, `public`, and `package.json` files to your Hostinger hosting
+
+3. Configure Node.js application in Hostinger control panel
+
+4. Set the start command: `npm start`
+
+## Environment Variables
+
+The project uses EmailJS for contact form functionality. Create a `.env.local` file with:
+
+```env
+NEXT_PUBLIC_SITE_URL=https://adilabs.id
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+```
+
+**Note:** The EmailJS credentials are already configured. If you need to change them, update the values in `.env.local`
+
+## SEO Features
+
+- Meta tags (title, description, keywords)
+- Open Graph tags for social media
+- Twitter Card tags
+- JSON-LD structured data
+- Sitemap.xml
+- Robots.txt
+- Semantic HTML
+- Fast loading performance
+
+## Performance
+
+- Server-side rendering (SSR)
+- Image optimization with Next.js Image
+- Code splitting
+- CSS optimization
+- Lazy loading
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## License
+
+© 2025 Adi Sumardi. All rights reserved.
+
+## Contact
+
+- Email: adisumardi888@gmail.com
+- LinkedIn: [linkedin.com/in/adi-sumardi](https://www.linkedin.com/in/adi-sumardi-9037b0156/)
+- GitHub: [github.com/Adi-Sumardi](https://github.com/Adi-Sumardi)
+- Instagram: [@_adi1508](https://instagram.com/_adi1508)
+- Facebook: [adi.sumardi888](https://www.facebook.com/adi.sumardi888/)
