@@ -31,11 +31,19 @@ export default function GitHubStats() {
         const userResponse = await fetch('https://api.github.com/users/Adi-Sumardi');
         const userData = await userResponse.json();
 
+        // Check if user data is valid
+        if (!userData || userData.message) {
+          throw new Error('GitHub API error');
+        }
+
         // Fetch repos to calculate total stars
         const reposResponse = await fetch('https://api.github.com/users/Adi-Sumardi/repos?per_page=100');
         const reposData = await reposResponse.json();
 
-        const totalStars = reposData.reduce((acc: number, repo: any) => acc + repo.stargazers_count, 0);
+        // Check if repos data is an array
+        const totalStars = Array.isArray(reposData)
+          ? reposData.reduce((acc: number, repo: any) => acc + (repo.stargazers_count || 0), 0)
+          : 0;
 
         setGithubData({
           publicRepos: userData.public_repos || 0,
