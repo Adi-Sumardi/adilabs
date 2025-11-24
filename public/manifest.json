@@ -1,0 +1,17 @@
+{
+  "name": "Adi Sumardi - Fullstack Developer",
+  "short_name": "AdiLabs",
+  "description": "Professional portfolio of Adi Sumardi - Fullstack Developer specializing in web applications, AI integration, and enterprise solutions",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e40af",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "256x256",
+      "type": "image/x-icon"
+    }
+  ]
+}

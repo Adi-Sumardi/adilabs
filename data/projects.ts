@@ -9,6 +9,14 @@ export interface Project {
   liveUrl?: string;
   githubUrl?: string;
   featured: boolean;
+  caseStudy?: {
+    challenge: string;
+    solution: string;
+    results: string[];
+    techStack: string[];
+    duration: string;
+    team: string;
+  };
 }
 
 export const projects: Project[] = [
@@ -20,6 +28,19 @@ export const projects: Project[] = [
     category: 'AI/ML',
     tags: ['AI', 'Machine Learning', 'OCR', 'Python', 'Computer Vision', 'Excel Automation'],
     featured: true,
+    caseStudy: {
+      challenge: 'Manual data entry from financial documents was time-consuming, error-prone, and required significant human resources. Processing thousands of invoices and receipts monthly created bottlenecks in the accounting workflow.',
+      solution: 'Developed an AI-powered document processing system using advanced OCR and machine learning models to automatically extract data from various document types. Implemented intelligent field recognition, data validation, and Excel export functionality.',
+      results: [
+        'Reduced document processing time by 95%',
+        'Achieved 98% accuracy in data extraction',
+        'Processed 10,000+ documents monthly',
+        'Saved 200+ hours of manual work per month',
+      ],
+      techStack: ['Python', 'TensorFlow', 'OpenCV', 'Tesseract OCR', 'Pandas', 'FastAPI'],
+      duration: '4 months',
+      team: 'Solo Developer + 1 ML Engineer',
+    },
   },
   {
     id: 'sianggar',

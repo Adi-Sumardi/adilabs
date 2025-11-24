@@ -3,13 +3,15 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { projects, categories } from '@/data/projects';
-import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
+import { projects, categories, Project } from '@/data/projects';
+import { FaExternalLinkAlt, FaGithub, FaInfo } from 'react-icons/fa';
+import ProjectCaseStudy from './ProjectCaseStudy';
 
 export default function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [activeFilter, setActiveFilter] = useState('All');
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filteredProjects = activeFilter === 'All'
     ? projects
@@ -87,6 +89,14 @@ export default function Projects() {
                 {/* Overlay on hover */}
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <div className="flex gap-4">
+                    {project.caseStudy && (
+                      <button
+                        onClick={() => setSelectedProject(project)}
+                        className="p-3 bg-white rounded-full hover:bg-blue-400 transition-colors"
+                      >
+                        <FaInfo className="text-blue-900" />
+                      </button>
+                    )}
                     {project.liveUrl && (
                       <a
                         href={project.liveUrl}
@@ -168,6 +178,15 @@ export default function Projects() {
           </motion.div>
         )}
       </div>
+
+      {/* Case Study Modal */}
+      {selectedProject && (
+        <ProjectCaseStudy
+          project={selectedProject}
+          isOpen={!!selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
+      )}
     </section>
   );
 }
