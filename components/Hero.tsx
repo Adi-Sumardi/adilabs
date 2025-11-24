@@ -2,8 +2,40 @@
 
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope, FaChevronDown } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
 
 export default function Hero() {
+  const [displayedRole, setDisplayedRole] = useState('');
+  const roles = ['Fullstack Developer', 'AI Enthusiast', 'Problem Solver', 'Tech Innovator'];
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const currentRole = roles[currentRoleIndex];
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing
+        if (displayedRole.length < currentRole.length) {
+          setDisplayedRole(currentRole.slice(0, displayedRole.length + 1));
+        } else {
+          // Pause before deleting
+          setTimeout(() => setIsDeleting(true), 2000);
+        }
+      } else {
+        // Deleting
+        if (displayedRole.length > 0) {
+          setDisplayedRole(displayedRole.slice(0, -1));
+        } else {
+          setIsDeleting(false);
+          setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+        }
+      }
+    }, isDeleting ? 50 : 150);
+
+    return () => clearTimeout(timeout);
+  }, [displayedRole, isDeleting, currentRoleIndex, roles]);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: 'smooth' });
@@ -86,34 +118,84 @@ export default function Hero() {
 
           <motion.h1
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: 0.3,
+              duration: 0.8,
+              type: "spring",
+              stiffness: 100
+            }}
           >
-            Adi Sumardi
+            {'Adi Sumardi'.split('').map((char, index) => (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay: 0.3 + index * 0.05,
+                  duration: 0.5,
+                }}
+              >
+                {char === ' ' ? '\u00A0' : char}
+              </motion.span>
+            ))}
           </motion.h1>
 
           <motion.div
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 min-h-[4rem] sm:min-h-[5rem]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
+            transition={{ delay: 0.8 }}
           >
-            <span className="text-white">Fullstack Developer</span>
-            <br />
-            <span className="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">
-              Crafting Digital Experiences
+            <span className="text-white">
+              {displayedRole}
+              <motion.span
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ duration: 0.8, repeat: Infinity }}
+                className="inline-block w-1 h-8 sm:h-10 md:h-12 bg-amber-400 ml-1"
+              />
             </span>
+            <br />
+            <motion.span
+              className="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+            >
+              Crafting Digital Experiences
+            </motion.span>
           </motion.div>
 
           <motion.p
             className="text-blue-100 text-lg sm:text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5, duration: 0.8 }}
           >
-            Transforming ideas into powerful web applications with modern technologies.
-            Specialized in full-stack development, AI integration, and enterprise solutions.
+            {'Transforming ideas into powerful web applications with modern technologies.'.split(' ').map((word, index) => (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.5 + index * 0.05 }}
+                className="inline-block mr-2"
+              >
+                {word}
+              </motion.span>
+            ))}
+            <br />
+            {'Specialized in full-stack development, AI integration, and enterprise solutions.'.split(' ').map((word, index) => (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 2.0 + index * 0.05 }}
+                className="inline-block mr-2"
+              >
+                {word}
+              </motion.span>
+            ))}
           </motion.p>
 
           {/* CTA Buttons */}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
+import { PlausibleAnalytics } from "@/components/Analytics";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -84,6 +85,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <JsonLd />
+        <PlausibleAnalytics domain="adilabs.id" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

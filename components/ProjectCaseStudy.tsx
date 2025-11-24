@@ -11,7 +11,7 @@ interface ProjectCaseStudyProps {
 }
 
 export default function ProjectCaseStudy({ project, isOpen, onClose }: ProjectCaseStudyProps) {
-  if (!project.caseStudy) return null;
+  const hasCaseStudy = !!project.caseStudy;
 
   return (
     <AnimatePresence>
@@ -62,71 +62,73 @@ export default function ProjectCaseStudy({ project, isOpen, onClose }: ProjectCa
 
                 {/* Content */}
                 <div className="p-8 space-y-8">
-                  {/* Overview */}
-                  <div className="flex flex-wrap gap-4 pb-6 border-b border-gray-200 dark:border-gray-700">
-                    <div className="flex items-center gap-2">
-                      <FaClock className="text-blue-600" />
-                      <span className="text-sm text-muted">
-                        <strong>Duration:</strong> {project.caseStudy.duration}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <FaUsers className="text-amber-600" />
-                      <span className="text-sm text-muted">
-                        <strong>Team:</strong> {project.caseStudy.team}
-                      </span>
-                    </div>
-                  </div>
+                  {hasCaseStudy ? (
+                    <>
+                      {/* Overview */}
+                      <div className="flex flex-wrap gap-4 pb-6 border-b border-gray-200 dark:border-gray-700">
+                        <div className="flex items-center gap-2">
+                          <FaClock className="text-blue-600" />
+                          <span className="text-sm text-muted">
+                            <strong>Duration:</strong> {project.caseStudy!.duration}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <FaUsers className="text-amber-600" />
+                          <span className="text-sm text-muted">
+                            <strong>Team:</strong> {project.caseStudy!.team}
+                          </span>
+                        </div>
+                      </div>
 
-                  {/* Challenge */}
-                  <div>
-                    <h3 className="text-2xl font-bold mb-3 flex items-center gap-2">
-                      <span className="text-3xl">🎯</span> The Challenge
-                    </h3>
-                    <p className="text-muted leading-relaxed">{project.caseStudy.challenge}</p>
-                  </div>
+                      {/* Challenge */}
+                      <div>
+                        <h3 className="text-2xl font-bold mb-3 flex items-center gap-2">
+                          <span className="text-3xl">🎯</span> The Challenge
+                        </h3>
+                        <p className="text-muted leading-relaxed">{project.caseStudy!.challenge}</p>
+                      </div>
 
-                  {/* Solution */}
-                  <div>
-                    <h3 className="text-2xl font-bold mb-3 flex items-center gap-2">
-                      <span className="text-3xl">💡</span> The Solution
-                    </h3>
-                    <p className="text-muted leading-relaxed">{project.caseStudy.solution}</p>
-                  </div>
+                      {/* Solution */}
+                      <div>
+                        <h3 className="text-2xl font-bold mb-3 flex items-center gap-2">
+                          <span className="text-3xl">💡</span> The Solution
+                        </h3>
+                        <p className="text-muted leading-relaxed">{project.caseStudy!.solution}</p>
+                      </div>
 
-                  {/* Tech Stack */}
-                  <div>
-                    <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                      <FaTools className="text-blue-600" /> Tech Stack
-                    </h3>
-                    <div className="flex flex-wrap gap-2">
-                      {project.caseStudy.techStack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-4 py-2 bg-gradient-to-r from-blue-100 to-amber-100 dark:from-blue-900/30 dark:to-amber-900/30 text-blue-700 dark:text-blue-300 rounded-lg font-medium"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                      {/* Tech Stack */}
+                      <div>
+                        <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                          <FaTools className="text-blue-600" /> Tech Stack
+                        </h3>
+                        <div className="flex flex-wrap gap-2">
+                          {project.caseStudy!.techStack.map((tech) => (
+                            <span
+                              key={tech}
+                              className="px-4 py-2 bg-gradient-to-r from-blue-100 to-amber-100 dark:from-blue-900/30 dark:to-amber-900/30 text-blue-700 dark:text-blue-300 rounded-lg font-medium"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
 
-                  {/* Results */}
-                  <div>
-                    <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                      <span className="text-3xl">📊</span> Results & Impact
-                    </h3>
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      {project.caseStudy.results.map((result, index) => (
-                        <motion.div
-                          key={index}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                          className="flex items-start gap-3 p-4 bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-950/20 dark:to-blue-950/20 rounded-lg"
-                        >
-                          <FaCheckCircle className="text-green-600 text-xl mt-1 flex-shrink-0" />
-                          <span className="text-foreground font-medium">{result}</span>
+                      {/* Results */}
+                      <div>
+                        <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                          <span className="text-3xl">📊</span> Results & Impact
+                        </h3>
+                        <div className="grid sm:grid-cols-2 gap-4">
+                          {project.caseStudy!.results.map((result, index) => (
+                            <motion.div
+                              key={index}
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: index * 0.1 }}
+                              className="flex items-start gap-3 p-4 bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-950/20 dark:to-blue-950/20 rounded-lg"
+                            >
+                              <FaCheckCircle className="text-green-600 text-xl mt-1 flex-shrink-0" />
+                              <span className="text-foreground font-medium">{result}</span>
                         </motion.div>
                       ))}
                     </div>
@@ -137,6 +139,64 @@ export default function ProjectCaseStudy({ project, isOpen, onClose }: ProjectCa
                     <h3 className="text-xl font-bold mb-3">Project Overview</h3>
                     <p className="text-muted leading-relaxed">{project.longDescription}</p>
                   </div>
+                </>
+              ) : (
+                <>
+                  {/* Basic Project Info for projects without case studies */}
+                  <div>
+                    <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                      <span className="text-3xl">📋</span> Project Description
+                    </h3>
+                    <p className="text-muted leading-relaxed mb-6">{project.longDescription}</p>
+                  </div>
+
+                  {/* Category & Tags */}
+                  <div>
+                    <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                      <FaTools className="text-blue-600" /> Technologies Used
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-4 py-2 bg-gradient-to-r from-blue-100 to-amber-100 dark:from-blue-900/30 dark:to-amber-900/30 text-blue-700 dark:text-blue-300 rounded-lg font-medium"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Links */}
+                  {(project.liveUrl || project.githubUrl) && (
+                    <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
+                      <h3 className="text-xl font-bold mb-4">Project Links</h3>
+                      <div className="flex flex-wrap gap-4">
+                        {project.liveUrl && (
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300"
+                          >
+                            🌐 View Live Demo
+                          </a>
+                        )}
+                        {project.githubUrl && (
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-600 to-amber-500 text-white font-bold rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300"
+                          >
+                            💻 View Source Code
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
                 </div>
               </div>
             </div>
