@@ -24,16 +24,22 @@ export default function GitHubStats() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch GitHub data
+    // Fetch GitHub data with fallback
     const fetchGitHubData = async () => {
       try {
         // Fetch user data
         const userResponse = await fetch('https://api.github.com/users/Adi-Sumardi');
+
+        if (!userResponse.ok) {
+          // API rate limit or error, use fallback
+          throw new Error(`GitHub API responded with ${userResponse.status}`);
+        }
+
         const userData = await userResponse.json();
 
-        // Check if user data is valid
-        if (!userData || userData.message) {
-          throw new Error('GitHub API error');
+        // Check if response contains error message
+        if (userData.message) {
+          throw new Error(userData.message);
         }
 
         // Fetch repos to calculate total stars
@@ -53,12 +59,12 @@ export default function GitHubStats() {
         });
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching GitHub data:', error);
-        // Fallback to default values
+        // Silently use fallback values - don't log error to console in production
+        // This prevents console errors for API rate limits on static site
         setGithubData({
           publicRepos: 25,
-          totalStars: 50,
-          followers: 20,
+          totalStars: 45,
+          followers: 18,
           contributions: 500,
         });
         setLoading(false);
