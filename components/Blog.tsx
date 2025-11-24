@@ -4,12 +4,14 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { FaCalendar, FaClock, FaTag, FaArrowRight } from 'react-icons/fa';
-import { articles } from '@/data/articles';
+import { articles, Article } from '@/data/articles';
+import ArticleDetail from './ArticleDetail';
 
 export default function Blog() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
 
   const categories = ['All', ...Array.from(new Set(articles.map((a) => a.category)))];
 
@@ -121,7 +123,10 @@ export default function Blog() {
                       ))}
                     </div>
 
-                    <button className="flex items-center gap-2 text-blue-600 font-semibold hover:gap-4 transition-all duration-300">
+                    <button
+                      onClick={() => setSelectedArticle(article)}
+                      className="flex items-center gap-2 text-blue-600 font-semibold hover:gap-4 transition-all duration-300"
+                    >
                       Read More <FaArrowRight />
                     </button>
                   </div>
@@ -171,7 +176,10 @@ export default function Blog() {
                       <span>{new Date(article.publishedDate).toLocaleDateString()}</span>
                     </div>
 
-                    <button className="flex items-center gap-2 text-blue-600 text-sm font-semibold hover:gap-4 transition-all duration-300">
+                    <button
+                      onClick={() => setSelectedArticle(article)}
+                      className="flex items-center gap-2 text-blue-600 text-sm font-semibold hover:gap-4 transition-all duration-300"
+                    >
                       Read More <FaArrowRight />
                     </button>
                   </div>
@@ -188,6 +196,15 @@ export default function Blog() {
           </div>
         )}
       </div>
+
+      {/* Article Detail Modal */}
+      {selectedArticle && (
+        <ArticleDetail
+          article={selectedArticle}
+          isOpen={!!selectedArticle}
+          onClose={() => setSelectedArticle(null)}
+        />
+      )}
     </section>
   );
 }
