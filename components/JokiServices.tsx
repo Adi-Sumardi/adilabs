@@ -538,7 +538,7 @@ export default function JokiServices() {
             {t.customSubtitle}
           </p>
           <a
-            href="https://wa.me/6281234567890?text=Hello,%20I%20am%20interested%20in%20app%20development%20services"
+            href="https://wa.me/6285121379697?text=Hello,%20I%20am%20interested%20in%20app%20development%20services"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold rounded-full hover:shadow-2xl hover:shadow-green-500/50 transition-all duration-300 hover:scale-105"

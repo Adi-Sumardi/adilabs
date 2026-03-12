@@ -15,49 +15,75 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Adi Sumardi | Fullstack Developer & Tech Enthusiast",
-  description: "Experienced fullstack developer specializing in web applications, AI integration, and enterprise solutions. Building innovative digital experiences with React, Next.js, Node.js, and modern technologies.",
+  title: "AdiLabs.id | Professional Web & App Development Services",
+  description: "Professional web development, mobile apps & AI integration services. Free 24/7 AI consultation. Specializing in React, Next.js, Node.js. Serving clients worldwide — Indonesia, USA, UK, Middle East & beyond.",
   keywords: [
+    // English - International
+    "web development services",
+    "hire web developer",
+    "custom web application",
+    "mobile app development",
     "fullstack developer",
-    "web developer",
-    "React developer",
-    "Next.js developer",
+    "AI integration services",
+    "React developer for hire",
+    "Next.js development agency",
     "Node.js developer",
-    "AI integration",
-    "enterprise solutions",
+    "affordable web development",
+    "professional web developer",
+    "custom software development",
+    "enterprise web application",
+    "freelance developer",
+    // Indonesian
+    "jasa pembuatan website",
+    "jasa pembuatan aplikasi",
+    "jasa web developer Indonesia",
+    "jasa bikin website murah",
+    "jasa pembuatan web app",
+    "jasa integrasi AI",
+    "joki aplikasi",
+    "buat website company profile",
+    // Arabic
+    "تطوير مواقع الويب",
+    "خدمات تطوير التطبيقات",
+    "مطور ويب محترف",
+    // Brand
     "Adi Sumardi",
     "AdiLabs",
-    "portfolio",
-    "Indonesia developer",
   ],
   authors: [{ name: "Adi Sumardi", url: "https://adilabs.id" }],
   creator: "Adi Sumardi",
-  publisher: "Adi Sumardi",
+  publisher: "AdiLabs.id",
   metadataBase: new URL("https://adilabs.id"),
   alternates: {
     canonical: "/",
+    languages: {
+      "id-ID": "/",
+      "en-US": "/",
+      "ar": "/",
+    },
   },
   manifest: "/manifest.json",
   openGraph: {
     type: "website",
     locale: "en_US",
+    alternateLocale: ["id_ID", "ar_SA"],
     url: "https://adilabs.id",
-    title: "Adi Sumardi | Fullstack Developer & Tech Enthusiast",
-    description: "Experienced fullstack developer specializing in web applications, AI integration, and enterprise solutions.",
-    siteName: "AdiLabs",
+    title: "AdiLabs.id | Professional Web & App Development Services",
+    description: "Professional web & app development with free 24/7 AI consultation. React, Next.js, Node.js, AI Integration. Serving clients worldwide.",
+    siteName: "AdiLabs.id",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Adi Sumardi - Fullstack Developer",
+        alt: "AdiLabs.id - Professional Web & App Development Services",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Adi Sumardi | Fullstack Developer & Tech Enthusiast",
-    description: "Experienced fullstack developer specializing in web applications, AI integration, and enterprise solutions.",
+    title: "AdiLabs.id | Professional Web & App Development",
+    description: "Professional web & app development services. Free 24/7 AI consultation. Serving clients in Indonesia, USA, UK, Middle East & worldwide.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -71,9 +97,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
 };
 
 export default function RootLayout({
@@ -82,7 +105,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="id">
       <head>
         <JsonLd />
         <PlausibleAnalytics domain="adilabs.id" />

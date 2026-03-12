@@ -34,7 +34,6 @@ export default function About() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-          {/* Profile Image Side */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -49,7 +48,6 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Bio Side */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -92,7 +90,6 @@ export default function About() {
           </motion.div>
         </div>
 
-        {/* Stats Section */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}

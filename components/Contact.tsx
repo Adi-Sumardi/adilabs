@@ -162,9 +162,12 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-background relative overflow-hidden" ref={ref}>
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-amber-500/10" />
+    <section id="contact" className="pt-10 pb-20 relative overflow-hidden" ref={ref}>
+      {/* Background Effects - matching Hero */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" />
+      </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
         <motion.div
@@ -179,7 +182,7 @@ export default function Contact() {
             </span>
             <span className="ml-3">🚀</span>
           </h2>
-          <p className="text-lg text-muted max-w-2xl mx-auto">
+          <p className="text-lg text-blue-200/80 max-w-2xl mx-auto">
             Have a project in mind? Let&apos;s talk about how I can help bring it to life
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-amber-500 mx-auto rounded-full mt-4" />
@@ -192,8 +195,8 @@ export default function Contact() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl">
-              <h3 className="text-2xl font-bold mb-6">Send Me a Message</h3>
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 shadow-xl">
+              <h3 className="text-2xl font-bold mb-6 text-white">Send Me a Message</h3>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Honeypot Field - Hidden from users, visible to bots */}
@@ -212,7 +215,7 @@ export default function Contact() {
 
                 {/* Name Input */}
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium mb-2 text-blue-200">
                     Your Name
                   </label>
                   <input
@@ -224,14 +227,14 @@ export default function Contact() {
                     required
                     minLength={2}
                     maxLength={100}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:focus:ring-amber-500 transition-all"
+                    className="w-full px-4 py-3 rounded-lg border border-white/10 bg-white/5 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="John Doe"
                   />
                 </div>
 
                 {/* Email Input */}
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium mb-2 text-blue-200">
                     Your Email
                   </label>
                   <input
@@ -241,14 +244,14 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:focus:ring-amber-500 transition-all"
+                    className="w-full px-4 py-3 rounded-lg border border-white/10 bg-white/5 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="john@example.com"
                   />
                 </div>
 
                 {/* Message Input */}
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium mb-2 text-blue-200">
                     Your Message
                   </label>
                   <textarea
@@ -260,10 +263,10 @@ export default function Contact() {
                     minLength={10}
                     maxLength={1000}
                     rows={6}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:focus:ring-amber-500 transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-lg border border-white/10 bg-white/5 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
                     placeholder="Tell me about your project... (min 10 characters)"
                   />
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-xs text-blue-300/50 mt-1">
                     {formData.message.length}/1000 characters
                   </p>
                 </div>
@@ -331,8 +334,8 @@ export default function Contact() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold mb-6">Get In Touch</h3>
-              <p className="text-muted leading-relaxed mb-8">
+              <h3 className="text-2xl font-bold mb-6 text-white">Get In Touch</h3>
+              <p className="text-blue-200/70 leading-relaxed mb-8">
                 I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Feel free to reach out through any of these channels.
               </p>
             </div>
@@ -348,14 +351,14 @@ export default function Contact() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
-                  className={`flex items-center gap-4 p-4 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 group ${social.color}`}
+                  className={`flex items-center gap-4 p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:bg-white/10 transition-all duration-300 group ${social.color}`}
                 >
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-amber-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
                     <social.icon className="text-white text-xl" />
                   </div>
                   <div>
-                    <p className="font-medium">{social.name}</p>
-                    <p className="text-sm text-muted">{social.label}</p>
+                    <p className="font-medium text-white">{social.name}</p>
+                    <p className="text-sm text-blue-200/60">{social.label}</p>
                   </div>
                 </motion.a>
               ))}
@@ -366,13 +369,13 @@ export default function Contact() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 1.2 }}
-              className="p-6 bg-gradient-to-br from-blue-50 to-amber-50 dark:from-blue-950/30 dark:to-amber-950/30 rounded-xl border border-blue-200 dark:border-blue-800"
+              className="p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10"
             >
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-                <p className="font-bold text-lg">Available for Work</p>
+                <p className="font-bold text-lg text-white">Available for Work</p>
               </div>
-              <p className="text-muted">
+              <p className="text-blue-200/70">
                 Currently accepting new projects and collaborations. Let&apos;s create something great together!
               </p>
             </motion.div>
