@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope, FaChevronDown, FaPaperPlane, FaRobot, FaUser, FaRedo, FaComments, FaCertificate } from 'react-icons/fa';
 import { useState, useEffect, useRef, KeyboardEvent } from 'react';
@@ -261,8 +262,8 @@ export default function Hero() {
                 <div className="flex justify-center mb-4">
                   <div className="relative">
                     <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-amber-500 rounded-full blur opacity-60 animate-pulse" />
-                    <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-blue-100 to-amber-100 flex items-center justify-center text-5xl border-2 border-white/30">
-                      👨‍💻
+                    <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-white/30">
+                      <Image src="/logo/adilabs.png" alt="AdiLabs Logo" fill className="object-cover" />
                     </div>
                   </div>
                 </div>

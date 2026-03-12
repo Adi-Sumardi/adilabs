@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { FaGithub, FaLinkedin, FaEnvelope, FaInstagram, FaFacebook, FaWhatsapp, FaHeart } from 'react-icons/fa';
 
@@ -20,9 +21,14 @@ export default function Footer() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-8">
         <div className="flex flex-col items-center gap-6">
           {/* Brand */}
-          <h3 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-amber-400 bg-clip-text text-transparent">
-            AdiLabs.id
-          </h3>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full overflow-hidden">
+              <Image src="/logo/adilabs.png" alt="AdiLabs Logo" width={40} height={40} className="object-cover" />
+            </div>
+            <h3 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-amber-400 bg-clip-text text-transparent">
+              AdiLabs.id
+            </h3>
+          </div>
 
           {/* Nav Links */}
           <div className="flex gap-6 text-sm">
