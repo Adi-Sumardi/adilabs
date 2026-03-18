@@ -13,16 +13,21 @@ jobs:
     steps:
       - name: Trigger article generation
         run: |
-          curl -s -f -X GET https://adilabs.id/api/blog/generate \
-            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
-            -o response.json
+          HTTP_STATUS=$(curl -s -o response.json -w "%{http_code}" -X GET https://adilabs.id/api/blog/generate \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}")
+          echo "HTTP Status: $HTTP_STATUS"
+          echo "Response:"
           cat response.json
+          if [ "$HTTP_STATUS" -ge 400 ]; then
+            echo "Request failed with status $HTTP_STATUS"
+            exit 1
+          fi
 
       - name: Check result
         run: |
           if grep -q '"success":true' response.json; then
             echo "Article generated successfully"
           else
-            echo "Article generation failed or no articles scheduled today"
+            echo "No articles scheduled today or generation skipped"
             cat response.json
           fi
