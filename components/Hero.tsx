@@ -310,7 +310,7 @@ export default function Hero() {
                     <div className="text-white/60 text-[10px]">Tahun</div>
                   </div>
                   <div className="text-center p-2 rounded-lg bg-white/5 border border-white/10">
-                    <div className="text-amber-400 font-bold text-lg">20+</div>
+                    <div className="text-amber-400 font-bold text-lg">250+</div>
                     <div className="text-white/60 text-[10px]">Project</div>
                   </div>
                 </div>
