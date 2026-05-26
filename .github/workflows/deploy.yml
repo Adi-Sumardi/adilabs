@@ -1,4 +1,4 @@
-name: Deploy to VPS
+name: deploy
 
 on:
   push:
@@ -8,15 +8,36 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1
+      - uses: actions/checkout@v4
+
+      - name: Sync static frontend → /var/www/adilabs
+        uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ secrets.VPS_HOST }}
+          host:     ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
+          key:      ${{ secrets.VPS_SSH_KEY }}
+          source: "*.html,*.css,*.jsx,*.js,assets/**,robots.txt,sitemap.xml,admin/**"
+          target: "/var/www/adilabs/"
+
+      - name: Sync backend → /opt/adilabs/backend
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host:     ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key:      ${{ secrets.VPS_SSH_KEY }}
+          source: "backend/**"
+          target: "/opt/adilabs/"
+
+      - name: Install, migrate & restart
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host:     ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key:      ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd /var/www/adilabs
-            git pull origin main
-            npm install
-            npm run build
-            pm2 restart adilabs
+            set -e
+            cd /opt/adilabs/backend
+            npm ci --omit=dev
+            node src/db/migrate.js
+            sudo systemctl restart adilabs-api
+            sudo nginx -t && sudo systemctl reload nginx

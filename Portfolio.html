@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>adilabs · Fullstack Engineering Datasheet · Adi Sumardi</title>
+  <meta name="description" content="adilabs — fullstack engineering laboratory by Adi Sumardi. Production-ready SaaS, scalable backend, clean APIs. Jakarta · GMT+7." />
+  <meta name="theme-color" content="#c08a1f" />
+  <link rel="icon" type="image/png" href="assets/adilabs.png" />
+  <link rel="stylesheet" href="lab/datasheet.css" />
+</head>
+<body data-screen-label="Lab Datasheet">
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script src="lab/content.js"></script>
+  <script type="text/babel" src="lab/datasheet-1.jsx"></script>
+  <script type="text/babel" src="lab/datasheet-2.jsx"></script>
+
+  <script type="text/babel">
+    function App() {
+      const C = window.LAB_CONTENT;
+      const A = window.LabA;
+      const B = window.LabB;
+      return (
+        <>
+          <A.TopBar brand={C.brand} facility={C.facility} />
+          <A.Hero brand={C.brand} facility={C.facility} />
+          <A.StatusRibbon status={C.status} />
+          <A.Experiments experiments={C.experiments} filters={C.filters} />
+          <A.Reagents reagents={C.reagents} groups={C.reagentGroups} />
+          <A.Readings readings={C.readings} />
+          <A.Packages packages={C.packages} />
+          <B.Calculator calculator={C.calculator} packages={C.packages} />
+          <B.Procedure procedure={C.procedure} />
+          <B.GitHubBlock github={C.github} />
+          <B.Testimonials items={C.testimonials} />
+          <B.Booking booking={C.booking} brand={C.brand} />
+          <B.FAQ faq={C.faq} />
+          <B.FootBlock brand={C.brand} facility={C.facility} />
+        </>
+      );
+    }
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>

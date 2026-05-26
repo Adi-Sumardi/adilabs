@@ -1,0 +1,15 @@
+[Unit]
+Description=adilabs.id API
+After=network.target postgresql.service
+
+[Service]
+Type=simple
+User=adilabs
+WorkingDirectory=/opt/adilabs/backend
+EnvironmentFile=/opt/adilabs/backend/.env
+ExecStart=/usr/bin/node src/index.js
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
